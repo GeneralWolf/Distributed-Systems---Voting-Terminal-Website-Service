@@ -1,0 +1,5 @@
+host: localhost
+rmiName: eVoting
+rmiPort: 7001
+multicastPort: 4321
+websocketServerPort: 8000

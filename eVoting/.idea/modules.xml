@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/EVoteApplication/EVoteApplication.iml" filepath="$PROJECT_DIR$/EVoteApplication/EVoteApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EVoteServer/EVoteServer.iml" filepath="$PROJECT_DIR$/EVoteServer/EVoteServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RootProject.iml" filepath="$PROJECT_DIR$/RootProject.iml" />
+    </modules>
+  </component>
+</project>

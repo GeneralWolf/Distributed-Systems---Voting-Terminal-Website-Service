@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="EVoteApplication:war">
+    <output-path>$PROJECT_DIR$/EVoteApplication/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>EVoteApplication</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="EVoteApplication.war">
+      <element id="artifact" artifact-name="EVoteApplication:war exploded" />
+    </root>
+  </artifact>
+</component>

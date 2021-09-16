@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+   <mvc:annotation-driven />
+   <context:component-scan base-package="com.evote.controllers" />
+	<!-- <context:property-placeholder location="classpath:rmiconnection.properties"/>-->
+	<bean id="properties"
+	    class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="locations">
+	    	<value>classpath:connection.properties</value>
+	    </property>
+	</bean>
+	
+   <bean class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name = "prefix" value = "/jsp/" />
+      <property name = "suffix" value = ".jsp" />
+   </bean>
+	<bean class="com.evote.remote.RmiClient">
+	    <property name="rmi" ref="rmiServer"/>
+	</bean>
+	<!--  <bean id="rmiClientSocketFactory" class="com.rmi.RMICustomClientSocketFactory">
+		<property name="timeout" value="5000"></property>
+	</bean>-->
+	<bean id="rmiServer" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+	    <property name="serviceUrl" value="rmi://${host}:${rmiPort}/${rmiName}"/>
+	   	<property name="serviceInterface" value="com.evote.remote.RmiServer"/>
+	    <property name="refreshStubOnConnectFailure" value="true"></property>
+		<property name="lookupStubOnStartup" value="true"></property>
+		<!-- <property name="registryClientSocketFactory" ref="rmiClientSocketFactory"></property>-->
+	</bean>
+	
+	<!-- Configures Interceptors -->
+	<mvc:interceptors>
+	 	<bean class="com.evote.interceptor.RoleMappingInterceptor"></bean>
+	</mvc:interceptors>
+	
+	<!-- <mvc:resources mapping="js/**" location="js/" /> -->
+</beans>
